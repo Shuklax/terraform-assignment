@@ -24,6 +24,9 @@ module "ecs" {
   public_subnets  = module.vpc.public_subnets
   private_subnets = module.vpc.private_subnets
   use_arm         = var.use_arm
+  aws_region      = var.region
+  alb_sg_id       = module.vpc.alb_sg_id
+  ecs_sg_id       = module.vpc.ecs_sg_id
 
 }
 

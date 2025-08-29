@@ -37,7 +37,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   subnets            = var.public_subnets
-  security_groups    = [module.vpc.alb_sg_id]
+  security_groups    = [var.alb_sg_id]
 }
 
 resource "aws_lb_target_group" "tg" {
@@ -45,6 +45,7 @@ resource "aws_lb_target_group" "tg" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+  target_type = "ip"
   health_check {
     path                = "/"
     protocol            = "HTTP"
@@ -100,7 +101,7 @@ resource "aws_ecs_task_definition" "task" {
         logDriver = "awslogs"
         options = {
           awslogs-group         = aws_cloudwatch_log_group.ecs.name
-          awslogs-region        = "ap-south-1"
+          awslogs-region        = var.aws_region
           awslogs-stream-prefix = "ecs"
         }
       }
@@ -118,7 +119,7 @@ resource "aws_ecs_service" "service" {
 
   network_configuration {
     subnets          = var.private_subnets
-    security_groups  = [module.vpc.ecs_sg_id]
+    security_groups  = [var.ecs_sg_id]
     assign_public_ip = false
   }
 

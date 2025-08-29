@@ -19,6 +19,13 @@ variable "use_arm" {
 }
 
 variable "aws_region" {
-  description = "AWS region for resources"
-  type        = string
+  type = string
+}
+
+variable "alb_sg_id" {
+  type = string
+}
+
+variable "ecs_sg_id" {
+  type = string
 }
