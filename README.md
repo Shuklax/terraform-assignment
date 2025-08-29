@@ -35,7 +35,7 @@ The infrastructure creates a production-ready environment with the following com
 - **Lifecycle Management**: S3 storage optimization
 - **Monitoring**: Comprehensive logging and alerting
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### Required Software
 - **Terraform** >= 1.0.0
