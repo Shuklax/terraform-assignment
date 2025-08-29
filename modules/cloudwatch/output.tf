@@ -1,0 +1,4 @@
+
+output "ecs_cpu_alarm" {
+  value = aws_cloudwatch_metric_alarm.ecs_cpu_high.id
+}
